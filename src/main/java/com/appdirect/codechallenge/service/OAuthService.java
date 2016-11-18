@@ -18,8 +18,8 @@ import oauth.signpost.exception.OAuthMessageSignerException;
 public class OAuthService {
 
 	public static Boolean validate(HttpServletRequest request){
-		String consumerKey = "firstappdirectproject-141134";
-		String consumerSecret = "vkiJRo8Vyy0WWwLi";
+		String consumerKey = "appdirectnotification-141854";
+		String consumerSecret = "lgJjxovgzBcgJMrx";
 		  try {
 	           System.out.println("Request Method {} - URL {}"+request.getMethod() +"" +request.getRequestURL().toString());
 	           System.out.println("Request consumerKey {} - consumerSecret {}"+consumerKey+ " "+consumerSecret);
@@ -38,7 +38,7 @@ public class OAuthService {
 	}
 	}
 	public static HttpURLConnection getoAuthSignedConnection(String connectionurl){
-		DefaultOAuthConsumer consumer = new DefaultOAuthConsumer("firstappdirectproject-141134", "vkiJRo8Vyy0WWwLi");
+		DefaultOAuthConsumer consumer = new DefaultOAuthConsumer("appdirectnotification-141854", "lgJjxovgzBcgJMrx");
 		URL url = null;
 		HttpURLConnection request = null;
 		try {
