@@ -19,7 +19,7 @@ public class OAuthService {
 
 	public static Boolean validate(HttpServletRequest request){
 		String consumerKey = "appdirectnotification-141854";
-		String consumerSecret = "lgJjxovgzBcgJMrx";
+		String consumerSecret = "BVeicA6sFT9X";
 		  try {
 	           System.out.println("Request Method {} - URL {}"+request.getMethod() +"" +request.getRequestURL().toString());
 	           System.out.println("Request consumerKey {} - consumerSecret {}"+consumerKey+ " "+consumerSecret);
@@ -39,7 +39,7 @@ public class OAuthService {
 	}
 	}
 	public static HttpURLConnection getoAuthSignedConnection(String connectionurl){
-		DefaultOAuthConsumer consumer = new DefaultOAuthConsumer("appdirectnotification-141854", "lgJjxovgzBcgJMrx");
+		DefaultOAuthConsumer consumer = new DefaultOAuthConsumer("appdirectnotification-141854", "BVeicA6sFT9X");
 		URL url = null;
 		HttpURLConnection request = null;
 		try {
