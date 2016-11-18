@@ -33,6 +33,7 @@ public class OAuthService {
 	            return true;
 	        } catch (OAuthException | URISyntaxException | IOException  e) {
 	            System.out.println("Failed to validate {}"+e.getMessage());
+	            e.printStackTrace();
 	            return false;
 	          //  throw new UnauthorizedException(e.getMessage());
 	}
