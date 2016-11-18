@@ -67,10 +67,6 @@
 			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
 			<!-- artifactId>jersey-container-servlet</artifactId -->
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-moxy</artifactId>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/oauth.signpost/signpost-core -->
 		<dependency>
 			<groupId>oauth.signpost</groupId>
