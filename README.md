@@ -11,7 +11,7 @@ Steps  :
 1) git clone https://github.com/AshishShivrajPoste/AshishPosteAppDirectCodeChallenge.git
 
 2) mvn clean package
-
+  Note : please change the consumerKey and consumerSecret in config.properties file under /src/main/resource before packaginf the application
 3) Deploy the war generated into tomcat server.
 
   copy the .war generated in step 2 to tomcat webapp folder
