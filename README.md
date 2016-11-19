@@ -6,8 +6,9 @@ Coding Challenge of AppDirect
 
 The Project is created in Eclipse using Maven Build tool.
 
-Run 
-1) git clone 
+Steps  :
+
+1) git clone https://github.com/AshishShivrajPoste/AshishPosteAppDirectCodeChallenge.git
 
 2) mvn clean package
 
