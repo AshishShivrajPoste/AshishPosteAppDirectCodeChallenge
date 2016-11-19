@@ -7,10 +7,15 @@ Coding Challenge of AppDirect
 The Project is created in Eclipse using Maven Build tool.
 
 Run 
+1) git clone 
 
-mvn clean package
+2) mvn clean package
 
-Deploy the war generated into tomcat server.
+3) Deploy the war generated into tomcat server.
+
+  copy the .war generated in step 2 to tomcat webapp folder
+
+4) start tomcat
 
 I am using ngrok for creating the tunnel.
 
@@ -37,6 +42,7 @@ Subscription Cancel Notification URL
 http://690c679c.ngrok.io/codechallenge/webapi/subscription/cancel?url={eventUrl}
 
 Subscription Status Notification URL
+
 http://690c679c.ngrok.io/codechallenge/webapi/subscription/status?url={eventUrl}
 
 User Assignment Notification URL
