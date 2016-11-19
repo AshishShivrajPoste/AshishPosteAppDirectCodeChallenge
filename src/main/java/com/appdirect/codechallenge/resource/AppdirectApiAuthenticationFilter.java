@@ -21,8 +21,6 @@ public class AppdirectApiAuthenticationFilter implements javax.servlet.Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 			String authCredentials = httpServletRequest.getHeader(AUTHENTICATION_HEADER);
-
-			System.out.println("Authentication Credentails:"+authCredentials);
 			// better injected
 			OAuthService authService = new OAuthService();
 			

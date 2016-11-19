@@ -25,9 +25,10 @@ public class SubscriptionService {
 		return subscriptionService;
 	}
 	
-	public Boolean addSubscription(String eventInformation,String accountIdentifier){
+	public Boolean addSubscription(String eventInformation, String accountIdentifier){
 		
 		Event subscribeEvent = (Event)Utility.getObjectfromJson(eventInformation, Event.class);
+		
 		if(!this.subscriptionInfo.containsKey(accountIdentifier)){
 			this.subscriptionInfo.put(accountIdentifier, subscribeEvent);
 			return true;
@@ -49,5 +50,20 @@ public class SubscriptionService {
 		}
 		return false;
 	}
-	
+	public Boolean updateSubscription(String eventInformation){
+		Event updatedEvent = (Event)Utility.getObjectfromJson(eventInformation, Event.class);
+		if(updatedEvent!=null && updatedEvent.getPayload()!=null 
+				&& updatedEvent.getPayload().getAccount()!=null 
+				&& updatedEvent.getPayload().getAccount().getAccountIdentifier()!=null){
+			String accountId = updatedEvent.getPayload().getAccount().getAccountIdentifier();
+			Event event = subscriptionInfo.get(accountId);
+			if(event!=null){
+				subscriptionInfo.put(accountId, updatedEvent);
+				return true;
+			}else{
+				return false;
+			}
+		}
+		return false;
+	}
 }

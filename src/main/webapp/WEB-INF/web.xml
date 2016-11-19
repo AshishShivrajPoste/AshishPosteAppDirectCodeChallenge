@@ -21,6 +21,10 @@
 		<servlet-name>Jersey Web Application</servlet-name>
 		<url-pattern>/webapi/*</url-pattern>
 	</servlet-mapping>
+	<listener>
+	<listener-class>com.appdirect.codechallenge.AppDirectServletContextListener
+	</listener-class>
+   </listener>
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.appdirect.codechallenge.resource.AppdirectApiAuthenticationFilter</filter-class>

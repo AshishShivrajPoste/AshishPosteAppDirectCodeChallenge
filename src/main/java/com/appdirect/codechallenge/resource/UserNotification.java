@@ -28,48 +28,50 @@ public class UserNotification {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response assignUser(@QueryParam("url") String eventURL){
-
-		System.out.println("Assign Event URL : "+eventURL);
+		System.out.println("***** ASSIGN USER EVENT NOTIFICATION STARTED *****");
+		//System.out.println("Assign Event URL : "+eventURL);
+		String result=null;
 		try {
 			HttpURLConnection request = OAuthService.getoAuthSignedConnection(eventURL);
 			request.connect();
 			System.out.println("Response: " + request.getResponseCode() + " Request : "+ request.getResponseMessage());
-			String result = Utility.readApiResponse(request);
+			result = Utility.readApiResponse(request);
 			System.out.println("Result : "+result);
-			Boolean isadded = usernotificationservice.addUser(result);
-			if(isadded){
-				CreateSubsciptionSuccess createSubsciptionSuccess = new CreateSubsciptionSuccess();
-				createSubsciptionSuccess.setSuccess(true);
-				createSubsciptionSuccess.setAccountIdentifier("fkgjk5656");
-				return Response.ok(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS").entity(createSubsciptionSuccess).build();
-			}else{
-				
-			}
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
+		Boolean isadded = usernotificationservice.addUser(result);
 		CreateSubsciptionSuccess createSubsciptionSuccess = new CreateSubsciptionSuccess();
-		createSubsciptionSuccess.setSuccess(true);
-		createSubsciptionSuccess.setAccountIdentifier("fkgjk5656");
+		if(isadded){
+			createSubsciptionSuccess.setSuccess(true);
+			System.out.println("Final Response Pass:"+Utility.getJsonfromObject(createSubsciptionSuccess));
+		}else{
+			createSubsciptionSuccess.setSuccess(false);
+			createSubsciptionSuccess.setErrorCode("USER_ALREADY_EXISTS");
+			System.out.println("Final Response Failed:"+Utility.getJsonfromObject(createSubsciptionSuccess));
+		}
+		System.out.println("***** ASSIGN USER EVENT NOTIFICATION ENDED *****");
 		return Response.ok(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS").entity(createSubsciptionSuccess).build();
 	}
-	
+
 	@GET
 	@Path("/unassign")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response unAssignUser(@QueryParam("url") String eventURL){
 
-		System.out.println("UnAssign Event URL : "+eventURL);
+		System.out.println("***** UNASSIGN USER EVENT NOTIFICATION STARTED *****");
+//		System.out.println("UnAssign Event URL : "+eventURL);
+		Boolean isRemoved = false;
 		try {
 			HttpURLConnection  request = OAuthService.getoAuthSignedConnection(eventURL);
 			request.connect();
 			String result = Utility.readApiResponse(request);
-			//Utility.getObjectfromJson(result, Event.class);
-		//	Event event  = (Event)Utility.getObjectfromJson(result,Event.class);
 			System.out.println("Result : "+result);
+			isRemoved = usernotificationservice.removeUsers(result);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,9 +80,16 @@ public class UserNotification {
 			e.printStackTrace();
 		}
 		CreateSubsciptionSuccess createSubsciptionSuccess = new CreateSubsciptionSuccess();
-		createSubsciptionSuccess.setSuccess(true);
-		createSubsciptionSuccess.setAccountIdentifier("fkgjk5656");
+		if(isRemoved){
+			createSubsciptionSuccess.setSuccess(true);
+			System.out.println("Final Response Pass:"+Utility.getJsonfromObject(createSubsciptionSuccess));
+		}else{
+			createSubsciptionSuccess.setSuccess(false);
+			createSubsciptionSuccess.setErrorCode("USER_NOT_FOUND");
+			System.out.println("Final Response Failed:"+Utility.getJsonfromObject(createSubsciptionSuccess));
+		}
+		System.out.println("***** UNASSIGN USER EVENT NOTIFICATION ENDED *****");
 		return Response.ok(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS").entity(createSubsciptionSuccess).build();
 	}
-	
+
 }

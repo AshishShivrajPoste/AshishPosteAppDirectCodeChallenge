@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
+import com.appdirect.codechallenge.model.CreateSubsciptionSuccess;
 import com.appdirect.codechallenge.model.Event;
 import com.google.gson.Gson;
 
@@ -21,6 +21,13 @@ public class Utility {
 		Gson gson = new Gson();
 		Event event = null;
 		event  = gson.fromJson(jsonString, class1);
+		return event;
+		
+	}
+	public static String getJsonfromObject(CreateSubsciptionSuccess obj){
+		
+		Gson gson = new Gson();
+		String event  = gson.toJson(obj);
 		return event;
 		
 	}
@@ -59,6 +66,13 @@ public class Utility {
 				System.out.print("  ");
 			}
 		}
+	}
+	
+	public static String generateAccountID(String eventInformation){
+		String accountIdentifier = null;
+		Event subscribeEvent = (Event)Utility.getObjectfromJson(eventInformation, Event.class);
+		accountIdentifier = subscribeEvent.hashCode()+"";
+		return accountIdentifier;
 	}
 
 }
